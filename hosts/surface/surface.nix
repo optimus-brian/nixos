@@ -2,13 +2,12 @@
 
 {
   # Surface Laptop 5 (Gen 5, 2022, Intel 12. Gen)
-  # Basis-Hardware-Module aus nixos-hardware. Touch + Pen via IPTSD
-  # können wir später als Overlay nachrüsten — erstmal solide Basis.
-  imports = [
-    inputs.nixos-hardware.nixosModules.microsoft-surface-common
-  ];
+  # microsoft-surface-common rausgenommen — triggert Kernel-Rebuild der >1h dauert.
+  # Stattdessen Standard-Kernel aus Cache. Touchscreen via libinput, Pen-Support
+  # können wir später nachrüsten wenn nötig.
 
-  # Kernel kommt aus nixos-hardware/microsoft/surface/common — nicht überschreiben.
+  # Standard-Kernel (latest LTS) aus Cache → kein Build
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Firmware (WiFi, Bluetooth, Graphics)
   hardware.enableAllFirmware = true;
