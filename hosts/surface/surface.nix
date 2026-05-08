@@ -2,20 +2,14 @@
 
 {
   # Surface Laptop 5 (Gen 5, 2022, Intel 12. Gen)
-  # Linux-Surface-Kernel + iptsd für Touch + Pen
+  # Basis-Hardware-Module aus nixos-hardware. Touch + Pen via IPTSD
+  # können wir später als Overlay nachrüsten — erstmal solide Basis.
   imports = [
     inputs.nixos-hardware.nixosModules.microsoft-surface-common
   ];
 
-  # Surface-spezifischer Kernel mit Patches (Touch, Cover, IPTS)
-  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linuxKernel.kernels.linux_surface or pkgs.linuxPackages_latest;
-
-  # Touchscreen + Pen Stack
-  microsoft-surface = {
-    ipts.enable = true;
-    surface-control.enable = true;
-    kernelVersion = "longterm";
-  };
+  # Aktueller Standard-Kernel — bringt Surface Laptop 5 sauber zum Boot.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Firmware (WiFi, Bluetooth, Graphics)
   hardware.enableAllFirmware = true;

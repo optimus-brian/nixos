@@ -13,14 +13,9 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     hyprland.url = "github:hyprwm/Hyprland";
-
-    nixos-surface = {
-      url = "github:linux-surface/nixos-surface";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, hyprland, nixos-surface, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, hyprland, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs-unstable = import nixpkgs-unstable {
@@ -33,7 +28,6 @@
         specialArgs = { inherit inputs pkgs-unstable; };
 
         modules = [
-          nixos-surface.nixosModules.default
           ./hosts/surface
 
           home-manager.nixosModules.home-manager
