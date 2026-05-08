@@ -1,20 +1,17 @@
 { config, pkgs, pkgs-unstable, ... }:
 
 {
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
     # === Daily Drivers ===
     obsidian
     firefox
-    thunar
+    xfce.thunar
     xfce.thunar-archive-plugin
     xfce.thunar-volman
     gvfs
-
-    # Browser-Alternativen
     chromium
 
     # === Editors / IDE ===
-    pkgs-unstable.code-cursor   # Cursor (AI-Editor) — aus unstable für aktuelle Version
     vscode
     neovim
 
@@ -38,11 +35,10 @@
     yq
     fd
     sd
-    dust          # bessere du
-    duf           # bessere df
-    procs         # bessere ps
-    bottom        # bessere top
-    glances
+    dust
+    duf
+    procs
+    bottom
     tldr
     bandwhich
     zellij
@@ -51,16 +47,14 @@
 
     # === Media ===
     mpv
-    imv           # Wayland-Image-Viewer
+    imv
     feh
-    zathura       # PDF
+    zathura
     yt-dlp
     ffmpeg
 
     # === Productivity ===
     libreoffice-fresh
-    obsidian
-    todoist-electron
 
     # === Comms ===
     discord
@@ -76,13 +70,12 @@
     rclone
     syncthing
 
-    # === Surface-spezifisch / Hardware ===
-    iio-sensor-proxy   # Auto-Rotate (Surface dreht sich!)
+    # === Surface / Hardware ===
+    iio-sensor-proxy
     iotop
     powertop
-    s-tui              # CPU-Stress-Test + Monitor
 
-    # === Pentest / Network (du bist Homelab-Guy) ===
+    # === Network (Homelab) ===
     nmap
     inetutils
     dig
@@ -90,12 +83,10 @@
     iperf3
     tcpdump
     socat
-
-    # === Obsidian-CLI ===
-    # offizielle obsidian-CLI ist nicht in nixpkgs — installierst du via npm,
-    # oder wir packen sie später als overlay.
-    # Fallback: obsidian-cli (yakitrak) gibt's via cargo.
-  ];
+  ]) ++ (with pkgs-unstable; [
+    # Aus unstable (für aktuelle Versionen)
+    code-cursor
+  ]);
 
   # Neovim mit Basis-Setup (LazyVim-ready)
   programs.neovim = {
@@ -108,7 +99,7 @@
       fd
       tree-sitter
       lua-language-server
-      nil           # Nix LSP
+      nil
       nixd
       nodePackages.bash-language-server
       nodePackages.typescript-language-server
@@ -124,30 +115,18 @@
     enableZshIntegration = true;
   };
 
-  # SSH-Config (nutzt deinen vorhandenen Key)
+  # SSH-Config (private hosts)
   programs.ssh = {
     enable = true;
     addKeysToAgent = "yes";
     extraConfig = ''
-      Host pve
-        HostName 192.168.10.1
-        User root
-
-      Host signage
-        HostName 192.168.111.196
-        Port 2222
-        User pi
-
-      Host onedev.rieth.io
-        IdentityFile ~/.ssh/id_ed25519
-
       Host *
         ServerAliveInterval 60
         ServerAliveCountMax 3
     '';
   };
 
-  # Syncthing für Vault-Sync (parallel zu iCloud)
+  # Syncthing für Vault-Sync
   services.syncthing = {
     enable = true;
   };
