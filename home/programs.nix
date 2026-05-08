@@ -13,7 +13,7 @@
 
     # === Editors / IDE ===
     vscode
-    neovim
+    # neovim kommt via programs.neovim.enable unten
 
     # === Development ===
     nodejs_22
