@@ -66,12 +66,11 @@ mount -o umask=077 /dev/disk/by-label/boot /mnt/boot
 ### 4. Config klonen + hardware-config generieren
 
 ```bash
-nix-shell -p git
-git clone https://CmFYLKl3rr1Ev9yh2AzYYwUwJKZ1esEstjkSf4Qe@onedev.rieth.io/nixos-surface.git /mnt/etc/nixos
+nix-shell -p git --run "git clone https://github.com/optimus-brian/nixos.git /mnt/etc/nixos"
 cd /mnt/etc/nixos
 
-# Hardware-Config generieren — überschreibt unsere Platzhalter-Datei
-nixos-generate-config --root /mnt
+# Hardware-Config generieren — nur Hardware-Teile, kein Filesystems-Block
+nixos-generate-config --root /mnt --no-filesystems
 # Resultat liegt unter /mnt/etc/nixos/hardware-configuration.nix
 # Kopiere den Output nach hosts/surface/hardware-configuration.nix:
 cp /mnt/etc/nixos/hardware-configuration.nix hosts/surface/hardware-configuration.nix
