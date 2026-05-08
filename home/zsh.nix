@@ -20,7 +20,7 @@
       ll = "eza -l --git --icons";
       la = "eza -la --git --icons";
       lt = "eza --tree --icons";
-      cat = "bat --paranoid";
+      bcat = "bat";
       cd = "z";
       grep = "rg";
       vim = "nvim";
