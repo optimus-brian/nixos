@@ -8,8 +8,7 @@
     inputs.nixos-hardware.nixosModules.microsoft-surface-common
   ];
 
-  # Aktueller Standard-Kernel — bringt Surface Laptop 5 sauber zum Boot.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Kernel kommt aus nixos-hardware/microsoft/surface/common — nicht überschreiben.
 
   # Firmware (WiFi, Bluetooth, Graphics)
   hardware.enableAllFirmware = true;
