@@ -1,8 +1,9 @@
 { ... }:
 
 {
+  # Globales catppuccin.enable triggert problematische Module (z.B. vscode → antigravity)
+  # Nur Default-Werte für Flavor/Accent setzen, einzelne Programme aktivieren
   catppuccin = {
-    enable = true;
     flavor = "mocha";
     accent = "mauve";
   };
