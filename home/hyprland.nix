@@ -8,8 +8,8 @@
     systemd.variables = [ "--all" ];
 
     settings = {
-      # Surface Laptop 5: 2256x1504 — Scale 1.5 = 1504x1003 (krumm aber Hyprland warnt nur)
-      monitor = [ ", preferred, auto, 1.5" ];
+      # Surface Laptop 5: 2256x1504 — Scale 1.0 native (alles klein, max Platz)
+      monitor = [ ", preferred, auto, 1.0" ];
 
       "$mod" = "SUPER";
       "$terminal" = "wezterm";
@@ -18,8 +18,8 @@
       "$menu" = "fuzzel";
 
       env = [
-        "XCURSOR_SIZE,16"
-        "HYPRCURSOR_SIZE,16"
+        "XCURSOR_SIZE,24"
+        "HYPRCURSOR_SIZE,24"
         "QT_QPA_PLATFORM,wayland"
         "GDK_BACKEND,wayland,x11"
       ];
