@@ -45,9 +45,18 @@
     libnotify
   ];
 
-  # Polkit-Agent (für sudo-prompts in GUI-Apps) — offizielles NixOS-Modul
+  # Polkit-Agent (für sudo-prompts in GUI-Apps) — custom systemd
+  # (programs.hyprpolkitagent gibt's erst in NixOS 25.12+)
   security.polkit.enable = true;
-  programs.hyprpolkitagent.enable = true;
+  systemd.user.services.hyprpolkitagent = {
+    description = "Hyprland Polkit Agent";
+    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+      Restart = "always";
+    };
+  };
 
   # Wayland-spezifische Env-Vars (system-wide)
   environment.sessionVariables = {
