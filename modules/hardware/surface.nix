@@ -58,9 +58,13 @@
 
   # Brightness ohne sudo: video-Group darf /sys/class/backlight/*/brightness schreiben
   services.udev.extraRules = ''
-    ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
-    ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
+    ACTION=="add|change", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
   '';
+
+  # tmpfiles als Fallback wenn udev-Rule beim Boot zu spät kommt
+  systemd.tmpfiles.rules = [
+    "z /sys/class/backlight/intel_backlight/brightness 0664 root video - -"
+  ];
 
   # Zram = komprimiertes RAM-Swap.
   # Bei 8GB Surface gibt das ~4GB extra "virtuellen" RAM ohne SSD-IO.
