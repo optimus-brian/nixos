@@ -69,10 +69,8 @@
     enableZshIntegration = true;
   };
 
-  programs.bat = {
-    enable = true;
-    config.theme = "Catppuccin-mocha";
-  };
+  programs.bat.enable = true;
+  # bat-Theme wird vom catppuccin-Modul gesetzt
 
   programs.eza.enable = true;
   programs.ripgrep.enable = true;

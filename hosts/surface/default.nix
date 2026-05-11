@@ -3,12 +3,9 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./surface.nix
-    ../../modules/system.nix
-    ../../modules/hyprland.nix
-    ../../modules/audio.nix
-    ../../modules/fonts.nix
-    ../../modules/networking.nix
+    ../../modules/hardware/surface.nix
+    ../../modules/core
+    ../../modules/desktop
   ];
 
   networking.hostName = "surface";

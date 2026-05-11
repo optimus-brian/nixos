@@ -25,15 +25,13 @@
       last = "log -1 HEAD --stat";
     };
 
-    delta = {
-      enable = true;
-      options = {
-        navigate = true;
-        line-numbers = true;
-        side-by-side = true;
-        syntax-theme = "Catppuccin-mocha";
-      };
-    };
+    # delta wird via programs.git.delta.catppuccin.enable gestyled (in theme.nix)
+  };
+
+  programs.delta.options = {
+    navigate = true;
+    line-numbers = true;
+    side-by-side = true;
   };
 
   programs.lazygit = {

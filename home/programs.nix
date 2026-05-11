@@ -131,4 +131,19 @@
   services.syncthing = {
     enable = true;
   };
+
+  # Mako als systemd-user-Service (statt exec-once in Hyprland)
+  services.mako = {
+    enable = true;
+    settings = {
+      default-timeout = 5000;
+      anchor = "top-right";
+      margin = "12";
+      border-radius = 8;
+      border-size = 2;
+      max-icon-size = 48;
+      font = "Inter 11";
+      # Farben kommen von services.mako.catppuccin.enable in theme.nix
+    };
+  };
 }
