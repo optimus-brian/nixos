@@ -2,12 +2,13 @@
 
 {
   # Surface Laptop 5 (Gen 5, 2022, Intel 12. Gen)
-  # microsoft-surface-common rausgenommen — triggert Kernel-Rebuild der >1h dauert.
-  # Stattdessen Standard-Kernel aus Cache. Touchscreen via libinput, Pen-Support
-  # können wir später nachrüsten wenn nötig.
+  # Surface-spezifische Kernel-Module + Patches via linux-surface Projekt.
+  # Erster Build dauert ~30-60 Min (Kernel + Hyprland-Komponenten neu).
+  imports = [
+    inputs.nixos-hardware.nixosModules.microsoft-surface-common
+  ];
 
-  # Standard-Kernel (latest LTS) aus Cache → kein Build
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Kernel kommt aus microsoft-surface-common (linux-surface Patches)
 
   # Firmware (WiFi, Bluetooth, Graphics)
   hardware.enableAllFirmware = true;
