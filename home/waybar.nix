@@ -95,7 +95,10 @@ in
       pulseaudio = {
         format = "Vol {volume}%";
         format-muted = "Vol Stumm";
+        scroll-step = 1;                                 # 1% pro scroll-Tick (vorher default ~5%)
         on-click = "pavucontrol";
+        on-scroll-up   = "${pkgs.pamixer}/bin/pamixer -i 1";
+        on-scroll-down = "${pkgs.pamixer}/bin/pamixer -d 1";
       };
 
       bluetooth = {
@@ -107,8 +110,8 @@ in
 
       backlight = {
         format = "☀ {percent}%";
-        on-scroll-up = "brightnessctl set +5%";
-        on-scroll-down = "brightnessctl set 5%-";
+        on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl set +2%";
+        on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
       };
 
       cpu = {
