@@ -15,6 +15,7 @@
     # === Editors / IDE ===
     # vscode kommt via programs.vscode unten (mit Extensions)
     # neovim kommt via programs.neovim unten
+    claude-code
 
     # === Development ===
     nodejs_22
