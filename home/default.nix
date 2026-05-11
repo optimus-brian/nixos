@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./theme.nix
     ./hyprland.nix
     ./hyprpaper.nix
     ./waybar.nix
