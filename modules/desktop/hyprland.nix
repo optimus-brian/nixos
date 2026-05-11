@@ -23,7 +23,7 @@
       GTK = {
         application_prefer_dark_theme = true;
         cursor_theme_name = lib.mkForce "Bibata-Modern-Ice";
-        font_name = "Inter 14";
+        font_name = lib.mkForce "Inter 14";
       };
     };
   };
