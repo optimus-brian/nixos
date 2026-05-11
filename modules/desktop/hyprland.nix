@@ -44,26 +44,15 @@
     pamixer
     networkmanagerapplet
     pavucontrol
+    polkit_gnome
     blueberry
     libnotify
   ];
 
-  # Polkit-Agent (für sudo-prompts in GUI-Apps) — GTK-basiert (polkit_gnome)
-  # statt hyprpolkitagent (Qt) der ohne Qt-Wayland-Plugin crashed
+  # Polkit-Agent: polkit_gnome via Hyprland exec-once (siehe home/hyprland.nix)
+  # Systemd-user-Service hatte kein DISPLAY/WAYLAND_DISPLAY — exec-once aus Hyprland
+  # heraus löst das, weil Hyprland die Env selbst setzt.
   security.polkit.enable = true;
-  systemd.user.services.polkit-gnome-authentication-agent-1 = {
-    description = "polkit-gnome-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
 
   # Wayland-spezifische Env-Vars (system-wide)
   environment.sessionVariables = {

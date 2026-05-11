@@ -30,6 +30,8 @@
         "wl-paste --type image --watch cliphist store"
         "nm-applet --indicator"
         "blueman-applet"
+        # Polkit-Agent (GTK statt Qt, von Hyprland aus → hat Wayland-Env)
+        "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
       ];
 
       general = {
