@@ -8,8 +8,8 @@
     systemd.variables = [ "--all" ];
 
     settings = {
-      # Surface Laptop 5: 2256x1504 — Scale 1.0 native (alles klein, max Platz)
-      monitor = [ ", preferred, auto, 1.0" ];
+      # Surface Laptop 5: 2256x1504 — Hyprland snappt auf nächsten sauberen Scale
+      monitor = [ ", preferred, auto, 1.25" ];
 
       "$mod" = "SUPER";
       "$terminal" = "wezterm";
