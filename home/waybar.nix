@@ -69,7 +69,8 @@ in
       };
 
       clock = {
-        format = "{:%H:%M  %a %d.%m.}";
+        interval = 1;                          # jede Sekunde refreshen
+        format = "{:%H:%M:%S  %a %d.%m.}";     # Sekunden anzeigen
         format-alt = "{:%Y-%m-%d %H:%M:%S}";
         tooltip-format = "<tt><small>{calendar}</small></tt>";
       };
