@@ -56,6 +56,12 @@
     timeout = 3;
   };
 
+  # Brightness ohne sudo: video-Group darf /sys/class/backlight/*/brightness schreiben
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chgrp video /sys/class/backlight/%k/brightness"
+    ACTION=="add", SUBSYSTEM=="backlight", RUN+="${pkgs.coreutils}/bin/chmod g+w /sys/class/backlight/%k/brightness"
+  '';
+
   # Zram = komprimiertes RAM-Swap.
   # Bei 8GB Surface gibt das ~4GB extra "virtuellen" RAM ohne SSD-IO.
   # zstd-Kompression ~3:1 → 50% RAM-Reserve werden zu ~12GB effektiv.
