@@ -8,8 +8,8 @@
     systemd.variables = [ "--all" ];
 
     settings = {
-      # Surface Laptop 5: 2256x1504 — 1.17 ist der von Hyprland selbst empfohlene Wert
-      monitor = [ ", preferred, auto, 1.17" ];
+      # Surface Laptop 5: 2256x1504 ÷ 1.333333 = 1692×1128 (sauber, 4/3)
+      monitor = [ ", preferred, auto, 1.333333" ];
 
       "$mod" = "SUPER";
       "$terminal" = "wezterm";
