@@ -1,20 +1,23 @@
 { config, pkgs, inputs, ... }:
 
 {
-  # Hyprland (system-side enable)
+  # Hyprland (system-side enable) — über UWSM gestartet, kein "start-hyprland" Warning
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
+    withUWSM = true;
   };
 
-  # Login-Manager: greetd + tuigreet (passt zum TUI-Flow, kein KDE/GDM-Bloat)
+  programs.uwsm.enable = true;
+
+  # Login-Manager: greetd + tuigreet, startet Hyprland via uwsm
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd Hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd 'uwsm start -- hyprland.desktop'";
         user = "greeter";
       };
     };
