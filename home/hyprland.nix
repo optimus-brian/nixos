@@ -226,8 +226,10 @@
       }];
       input-field = [{
         size = "300, 50";
-        position = "0, -100";
-        monitor = "";
+        position = "0, 0";
+        halign = "center";
+        valign = "center";
+        monitor = "eDP-1";          # explizit, sonst doppelt bei fractional scale
         dots_center = true;
         fade_on_empty = true;
         outline_thickness = 2;
