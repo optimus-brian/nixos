@@ -97,7 +97,7 @@
       tray = { spacing = 8; };
     };
 
-    # catppuccin-Modul lädt @import "mocha.css" automatisch → @base, @text, @mauve etc.
+    # "Floating Islands" style — Bar selbst transparent, Module als Pills
     style = ''
       @define-color accent @mauve;
 
@@ -105,46 +105,74 @@
         font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
         font-size: 13px;
         min-height: 0;
+        border: none;
+        border-radius: 0;
       }
 
       window#waybar {
-        background: alpha(@base, 0.85);
+        background: transparent;       /* Bar selbst durchsichtig */
         color: @text;
-        border-bottom: 2px solid alpha(@accent, 0.4);
       }
+
+      /* Jedes Modul wird zu einem Pill mit eigenem Hintergrund + Rundung */
+      #workspaces,
+      #window,
+      #clock,
+      #tray,
+      #pulseaudio,
+      #network,
+      #bluetooth,
+      #battery,
+      #backlight,
+      #cpu,
+      #memory {
+        background: alpha(@base, 0.75);
+        border-radius: 12px;
+        margin: 6px 4px;
+        padding: 0 12px;
+        border: 1px solid alpha(@accent, 0.15);
+      }
+
+      /* Workspaces: Buttons in einem Pill-Container */
+      #workspaces { padding: 0 4px; }
 
       #workspaces button {
         padding: 0 8px;
         color: @overlay0;
         background: transparent;
-        border-radius: 6px;
-        margin: 4px 2px;
+        border-radius: 8px;
+        border: none;
+        margin: 3px 2px;
+        transition: all 0.2s ease;
       }
 
       #workspaces button.active {
-        color: @accent;
-        background: alpha(@accent, 0.15);
+        color: @base;
+        background: @accent;
       }
 
       #workspaces button:hover {
-        background: alpha(@text, 0.1);
+        background: alpha(@accent, 0.2);
+        color: @accent;
       }
 
-      #window  { padding: 0 12px; color: @subtext0; }
-      #clock   { padding: 0 12px; color: @yellow; font-weight: bold; }
+      #clock   { color: @yellow; font-weight: bold; }
+      #window  { color: @subtext0; font-style: italic; }
 
-      #battery, #network, #pulseaudio, #bluetooth,
-      #backlight, #cpu, #memory, #tray {
-        padding: 0 10px;
-        margin: 4px 2px;
-        border-radius: 6px;
-        background: alpha(@surface0, 0.5);
-      }
+      #pulseaudio { color: @green; }
+      #network    { color: @blue; }
+      #bluetooth  { color: @sapphire; }
+      #battery    { color: @teal; }
+      #backlight  { color: @yellow; }
+      #cpu        { color: @peach; }
+      #memory     { color: @mauve; }
 
       #battery.warning  { color: @yellow; }
       #battery.critical { color: @red; animation: blink 1s infinite alternate; }
 
-      @keyframes blink { to { background: @red; color: @base; } }
+      @keyframes blink {
+        to { background: @red; color: @base; }
+      }
     '';
   };
 }
