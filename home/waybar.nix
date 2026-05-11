@@ -1,6 +1,15 @@
 { config, pkgs, lib, ... }:
 
 let
+  # Brightness fein justieren — 0.5% von max-Brightness pro Tick
+  brightnessFine = pkgs.writeShellScriptBin "brightness-fine" ''
+    DIR=$1   # "+" oder "-"
+    MAX=$(${pkgs.brightnessctl}/bin/brightnessctl m)
+    STEP=$(( MAX / 200 ))    # 0.5% = 1/200
+    [ "$STEP" -lt 1 ] && STEP=1
+    ${pkgs.brightnessctl}/bin/brightnessctl set "''${STEP}''${DIR}"
+  '';
+
   # Toggle-Script: btop in WezTerm — windowrule kümmert sich ums Floating
   # WezTerm-Args: --config überschreibt Tab-Bar + Decorations für DIESEN Aufruf
   toggleBtop = pkgs.writeShellScriptBin "toggle-btop" ''
@@ -18,7 +27,7 @@ let
   '';
 in
 {
-  home.packages = [ toggleBtop ];
+  home.packages = [ toggleBtop brightnessFine ];
 
   programs.waybar = {
     enable = true;
@@ -110,8 +119,8 @@ in
 
       backlight = {
         format = "☀ {percent}%";
-        on-scroll-up = "${pkgs.brightnessctl}/bin/brightnessctl set +2%";
-        on-scroll-down = "${pkgs.brightnessctl}/bin/brightnessctl set 2%-";
+        on-scroll-up = "brightness-fine +";
+        on-scroll-down = "brightness-fine -";
       };
 
       cpu = {
