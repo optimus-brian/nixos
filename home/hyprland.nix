@@ -189,7 +189,7 @@
         ",XF86AudioPrev, exec, playerctl previous"
       ];
 
-      windowrulev2 = [
+      windowrule = [
         # btop-popup: floating, mittig, schöne Größe
         "float, class:^(btop-popup)$"
         "size 1100 750, class:^(btop-popup)$"
