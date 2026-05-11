@@ -8,8 +8,8 @@
     systemd.variables = [ "--all" ];
 
     settings = {
-      # Surface Laptop 5: 2256x1504 — Scale 2.0 = 1128x752 (saubere Integer-Math)
-      monitor = [ ", preferred, auto, 2.0" ];
+      # Surface Laptop 5: 2256x1504 — Scale 1.6 = 1410x940 (saubere Integer-Math, lesbar)
+      monitor = [ ", preferred, auto, 1.6" ];
 
       "$mod" = "SUPER";
       "$terminal" = "wezterm";
