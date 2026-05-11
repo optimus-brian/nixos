@@ -183,12 +183,7 @@
         ",XF86AudioPrev, exec, playerctl previous"
       ];
 
-      windowrule = [
-        "float, class:^(pavucontrol)$"
-        "float, class:^(blueberry.py)$"
-        "float, class:^(nm-connection-editor)$"
-        "float, title:^(Picture-in-Picture)$"
-      ];
+      # windowrule: aktuelle Hyprland-Syntax ist anders, später nachrüsten
     };
   };
 
