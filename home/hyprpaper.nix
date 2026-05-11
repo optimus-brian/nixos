@@ -4,8 +4,8 @@
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [ "/home/brian/.config/wallpapers/default.jpg" ];
-      wallpaper = [ ", /home/brian/.config/wallpapers/default.jpg" ];
+      preload = [ "/home/brian/.config/wallpapers/default.png" ];
+      wallpaper = [ ", /home/brian/.config/wallpapers/default.png" ];
       ipc = "on";
       splash = false;
     };
