@@ -87,8 +87,12 @@
         };
       };
 
-      # Gestures (Hyprland 0.50+ neue Syntax) — erstmal weg, später zurück
-      # gesture = [ "3, horizontal, workspace" ];
+      # Mac-Style Trackpad-Gesten
+      gesture = [
+        "3, horizontal, workspace"   # 3-Finger-Swipe horizontal = Workspace wechseln
+        "4, horizontal, workspace"   # 4-Finger-Swipe auch (Mac Spaces-mäßig)
+        "3, up, fullscreen"          # 3 Finger hoch = Fullscreen toggle
+      ];
 
       misc = {
         disable_hyprland_logo = true;
