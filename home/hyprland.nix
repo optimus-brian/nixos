@@ -256,18 +256,17 @@
         font_family = "JetBrains Mono";
         placeholder_text = "Passwort:";
       }];
+      image = [{
+        monitor = "eDP-1";
+        path = "/home/brian/.config/wallpapers/logo-lock.png";
+        size = 160;
+        position = "0, 300";
+        halign = "center";
+        valign = "center";
+        border_size = 0;
+        rounding = 0;
+      }];
       label = [
-        # ASCII-Box oben — "SURFACE LOCKED"
-        {
-          monitor = "eDP-1";
-          text = "[ rieth.io · surface ]";
-          font_size = 24;
-          font_family = "JetBrains Mono Bold";
-          color = "rgba(31, 92, 133, 1)";   # r-blue
-          position = "0, 280";
-          halign = "center";
-          valign = "center";
-        }
         # Uhr — Mono, groß
         {
           monitor = "eDP-1";
