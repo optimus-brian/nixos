@@ -84,14 +84,15 @@
           natural_scroll = true;
           disable_while_typing = true;
           tap-to-click = true;
+          drag_3fg = 1;          # Mac-Style: 3 Finger drücken+ziehen = Drag (Markieren/Verschieben)
+          tap-and-drag = true;   # Tap+Halten+Ziehen geht auch
         };
       };
 
-      # Mac-Style Trackpad-Gesten
+      # Mac-Style Trackpad-Gesten — 3-Finger reserviert für Drag-and-Drop
       gesture = [
-        "3, horizontal, workspace"   # 3-Finger-Swipe horizontal = Workspace wechseln
-        "4, horizontal, workspace"   # 4-Finger-Swipe auch (Mac Spaces-mäßig)
-        "3, up, fullscreen"          # 3 Finger hoch = Fullscreen toggle
+        "4, horizontal, workspace"   # 4-Finger-Swipe horizontal = Workspace wechseln
+        "4, up, fullscreen"          # 4 Finger hoch = Fullscreen toggle
       ];
 
       misc = {
