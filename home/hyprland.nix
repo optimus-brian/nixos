@@ -183,7 +183,7 @@
         ",XF86AudioPrev, exec, playerctl previous"
       ];
 
-      windowrulev2 = [
+      windowrule = [
         "float, class:^(pavucontrol)$"
         "float, class:^(blueberry.py)$"
         "float, class:^(nm-connection-editor)$"
