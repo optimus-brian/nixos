@@ -8,8 +8,9 @@
     systemd.variables = [ "--all" ];
 
     settings = {
-      # Surface Laptop 5: 2256x1504 — Scale 1.25 für gute Lesbarkeit
-      monitor = [ ", preferred, auto, 1.25" ];
+      # Surface Laptop 5: 2256x1504 — nur "saubere" Scales mit ganzen Pixeln erlaubt.
+      # Hyprland selbst empfiehlt 1.17 für diese Auflösung.
+      monitor = [ ", preferred, auto, 1.17" ];
 
       "$mod" = "SUPER";
       "$terminal" = "wezterm";
