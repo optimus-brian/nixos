@@ -12,13 +12,18 @@
 
   programs.uwsm.enable = true;
 
-  # Login-Manager: greetd + tuigreet, startet Hyprland via uwsm
-  services.greetd = {
+  # Login-Manager: regreet (grafisch, Wayland) — NixOS-Modul setzt greetd + cage auto auf
+  programs.regreet = {
     enable = true;
     settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd 'uwsm start -- hyprland.desktop'";
-        user = "greeter";
+      background = {
+        path = "/home/brian/.config/wallpapers/default.png";
+        fit = "Cover";
+      };
+      GTK = {
+        application_prefer_dark_theme = true;
+        cursor_theme_name = "Bibata-Modern-Ice";
+        font_name = "Inter 14";
       };
     };
   };

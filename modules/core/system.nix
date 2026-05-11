@@ -33,8 +33,11 @@
   security.rtkit.enable = true;
 
   # GNOME Keyring (für Login-Pässe, Browser-Cookies)
+  # → PAM-Hookup: Login-Passwort entsperrt Keyring automatisch
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
+  security.pam.services.login.enableGnomeKeyring = true;
 
   # Flatpak optional (für proprietäre Stuff falls mal nötig)
   services.flatpak.enable = true;
