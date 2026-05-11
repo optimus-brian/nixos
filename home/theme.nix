@@ -15,7 +15,7 @@
   programs.zellij.catppuccin.enable = true;
   programs.waybar.catppuccin.enable = true;
   programs.fuzzel.catppuccin.enable = true;
-  programs.wezterm.catppuccin.enable = true;
+  # programs.wezterm.catppuccin — gibt's in release-25.11 nicht, color_scheme bleibt hardcoded
   services.mako.catppuccin.enable = true;
   programs.hyprlock.catppuccin.enable = true;
 }
