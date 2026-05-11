@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
   # Hyprland (system-side enable) — über UWSM gestartet, kein "start-hyprland" Warning
@@ -22,7 +22,7 @@
       };
       GTK = {
         application_prefer_dark_theme = true;
-        cursor_theme_name = "Bibata-Modern-Ice";
+        cursor_theme_name = lib.mkForce "Bibata-Modern-Ice";
         font_name = "Inter 14";
       };
     };

@@ -249,13 +249,63 @@
         font_color = "rgba(215, 220, 226, 1)";    # r-rule
         placeholder_text = "<i>Passwort...</i>";
       }];
-      label = [{
-        text = "$TIME";
-        font_size = 90;
-        position = "0, 200";
-        halign = "center";
-        valign = "center";
-      }];
+      label = [
+        # Große Uhr — mittig oben
+        {
+          monitor = "eDP-1";
+          text = "$TIME";
+          font_size = 96;
+          font_family = "Inter Bold";
+          color = "rgba(215, 220, 226, 1)";
+          position = "0, 220";
+          halign = "center";
+          valign = "center";
+        }
+        # Datum unter der Uhr
+        {
+          monitor = "eDP-1";
+          text = ''cmd[update:60000] date +"%A, %d. %B %Y"'';
+          font_size = 22;
+          font_family = "Inter";
+          color = "rgba(127, 184, 220, 1)";   # r-blue-tint
+          position = "0, 130";
+          halign = "center";
+          valign = "center";
+        }
+        # User-Greeting
+        {
+          monitor = "eDP-1";
+          text = "Hi $USER";
+          font_size = 18;
+          font_family = "Inter";
+          color = "rgba(135, 149, 164, 1)";   # r-ink-4
+          position = "0, 70";
+          halign = "center";
+          valign = "center";
+        }
+        # Battery + Network unten links
+        {
+          monitor = "eDP-1";
+          text = ''cmd[update:5000] echo "  $(cat /sys/class/power_supply/BAT*/capacity)%  ·  $(cat /sys/class/power_supply/BAT*/status)"'';
+          font_size = 14;
+          font_family = "JetBrains Mono";
+          color = "rgba(135, 149, 164, 1)";
+          position = "30, 30";
+          halign = "left";
+          valign = "bottom";
+        }
+        # Hostname rechts unten
+        {
+          monitor = "eDP-1";
+          text = ''cmd[update:60000] echo "$(hostname) · $(ip route get 1.1.1.1 | awk '{print $7; exit}')"'';
+          font_size = 14;
+          font_family = "JetBrains Mono";
+          color = "rgba(135, 149, 164, 1)";
+          position = "-30, 30";
+          halign = "right";
+          valign = "bottom";
+        }
+      ];
     };
   };
 }
