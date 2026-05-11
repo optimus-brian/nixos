@@ -1,6 +1,18 @@
 { config, pkgs, lib, ... }:
 
+let
+  # Toggle-Script: btop in WezTerm öffnen oder schließen
+  toggleBtop = pkgs.writeShellScriptBin "toggle-btop" ''
+    if ${pkgs.procps}/bin/pgrep -f 'wezterm.*btop' > /dev/null; then
+      ${pkgs.procps}/bin/pkill -f 'wezterm.*btop'
+    else
+      ${pkgs.wezterm}/bin/wezterm start --class=btop-popup -- ${pkgs.btop}/bin/btop &
+    fi
+  '';
+in
 {
+  home.packages = [ toggleBtop ];
+
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -91,8 +103,14 @@
         on-scroll-down = "brightnessctl set 5%-";
       };
 
-      cpu = { format = "CPU {usage}%"; };
-      memory = { format = "RAM {percentage}%"; };
+      cpu = {
+        format = "CPU {usage}%";
+        on-click = "toggle-btop";
+      };
+      memory = {
+        format = "RAM {percentage}%";
+        on-click = "toggle-btop";
+      };
 
       tray = { spacing = 8; };
     };
