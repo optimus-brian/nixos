@@ -6,11 +6,10 @@
 
     profiles.default = {
       extensions = with pkgs.vscode-extensions; [
-        # Sprachen / LSPs
+        # Sprachen / LSPs (alle stabil in nixpkgs)
         jnoortheen.nix-ide
         ms-python.python
         ms-python.vscode-pylance
-        ms-vscode.cpptools
         rust-lang.rust-analyzer
         golang.go
         bradlc.vscode-tailwindcss
@@ -18,34 +17,27 @@
         esbenp.prettier-vscode
         editorconfig.editorconfig
 
-        # Frontend
-        # dsznajder.es7-react-js-snippets nicht in nixpkgs — Brian installiert manuell wenn nötig
-        ms-vscode.vscode-typescript-next
-
         # Git
         eamodio.gitlens
         github.vscode-pull-request-github
         github.copilot
         github.copilot-chat
 
-        # Optik (passt zu rieth.io dark)
+        # Theme (passt zu rieth.io dark)
         catppuccin.catppuccin-vsc
         catppuccin.catppuccin-vsc-icons
 
         # Productivity
-        gruntfuggly.todo-tree
         usernamehw.errorlens
         christian-kohler.path-intellisense
         streetsidesoftware.code-spell-checker
-        streetsidesoftware.code-spell-checker-german
 
         # Container/K8s
         ms-azuretools.vscode-docker
         ms-kubernetes-tools.vscode-kubernetes-tools
 
-        # Markdown / Docs
+        # Markdown
         yzhang.markdown-all-in-one
-        bierner.markdown-mermaid
       ];
 
       userSettings = {
@@ -69,10 +61,10 @@
         "editor.renderWhitespace" = "boundary";
         "editor.rulers" = [ 80 120 ];
 
-        # Telemetry aus
+        # Telemetry aus, Auto-Update aus (kommt via Nix)
         "telemetry.telemetryLevel" = "off";
         "redhat.telemetry.enabled" = false;
-        "update.mode" = "none";              # Updates über Nix
+        "update.mode" = "none";
 
         # Terminal
         "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font'";
@@ -87,7 +79,7 @@
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
 
-        # Sprachen
+        # Sprachen-Defaults
         "[python]"."editor.defaultFormatter" = "ms-python.python";
         "[typescript]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
         "[typescriptreact]"."editor.defaultFormatter" = "esbenp.prettier-vscode";
@@ -98,9 +90,6 @@
         # ErrorLens
         "errorLens.enabled" = true;
         "errorLens.gutterIconsEnabled" = true;
-
-        # Spell-Check
-        "cSpell.language" = "en,de-DE";
       };
     };
   };

@@ -54,4 +54,13 @@
     efi.canTouchEfiVariables = true;
     timeout = 3;
   };
+
+  # Zram = komprimiertes RAM-Swap.
+  # Bei 8GB Surface gibt das ~4GB extra "virtuellen" RAM ohne SSD-IO.
+  # zstd-Kompression ~3:1 → 50% RAM-Reserve werden zu ~12GB effektiv.
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 50;     # max. 50% RAM als zram (= 4GB von 8GB)
+  };
 }
