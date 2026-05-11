@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./theme.nix
     ./hyprland.nix
     ./hyprpaper.nix
     ./waybar.nix
@@ -35,9 +34,17 @@
     x11.enable = true;
   };
 
-  # GTK — nur Icons hier, GTK-Theme + Cursor liefert catppuccin-Modul automatisch
+  # GTK Theme (Catppuccin Mocha Mauve)
   gtk = {
     enable = true;
+    theme = {
+      name = "Catppuccin-Mocha-Standard-Mauve-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "mauve" ];
+        size = "standard";
+        variant = "mocha";
+      };
+    };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;

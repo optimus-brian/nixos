@@ -97,10 +97,7 @@
       tray = { spacing = 8; };
     };
 
-    # Catppuccin-Modul liefert via @import alle Farben als CSS-Vars (@base, @mauve, @text etc.)
     style = ''
-      @define-color accent @mauve;
-
       * {
         font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
         font-size: 13px;
@@ -108,43 +105,43 @@
       }
 
       window#waybar {
-        background: alpha(@base, 0.85);
-        color: @text;
-        border-bottom: 2px solid alpha(@accent, 0.4);
+        background: rgba(30, 30, 46, 0.85);
+        color: #cdd6f4;
+        border-bottom: 2px solid rgba(203, 166, 247, 0.4);
       }
 
       #workspaces button {
         padding: 0 8px;
-        color: @overlay0;
+        color: #6c7086;
         background: transparent;
         border-radius: 6px;
         margin: 4px 2px;
       }
 
       #workspaces button.active {
-        color: @accent;
-        background: alpha(@accent, 0.15);
+        color: #cba6f7;
+        background: rgba(203, 166, 247, 0.15);
       }
 
       #workspaces button:hover {
-        background: alpha(@text, 0.1);
+        background: rgba(255, 255, 255, 0.1);
       }
 
-      #window  { padding: 0 12px; color: @subtext0; }
-      #clock   { padding: 0 12px; color: @yellow; font-weight: bold; }
+      #window  { padding: 0 12px; color: #a6adc8; }
+      #clock   { padding: 0 12px; color: #f9e2af; font-weight: bold; }
 
       #battery, #network, #pulseaudio, #bluetooth,
       #backlight, #cpu, #memory, #tray {
         padding: 0 10px;
         margin: 4px 2px;
         border-radius: 6px;
-        background: alpha(@surface0, 0.5);
+        background: rgba(49, 50, 68, 0.5);
       }
 
-      #battery.warning  { color: @yellow; }
-      #battery.critical { color: @red; animation: blink 1s infinite alternate; }
+      #battery.warning  { color: #f9e2af; }
+      #battery.critical { color: #f38ba8; animation: blink 1s infinite alternate; }
 
-      @keyframes blink { to { background: @red; color: @base; } }
+      @keyframes blink { to { background: #f38ba8; color: #1e1e2e; } }
     '';
   };
 }

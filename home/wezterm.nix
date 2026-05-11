@@ -10,7 +10,8 @@
       local wezterm = require 'wezterm'
       local config = wezterm.config_builder()
 
-      -- color_scheme wird vom catppuccin-Modul gesetzt
+      -- Look & Feel: Catppuccin Mocha
+      config.color_scheme = 'Catppuccin Mocha'
       config.font = wezterm.font_with_fallback {
         'JetBrainsMono Nerd Font',
         'Symbols Nerd Font',
@@ -81,7 +82,7 @@
     enable = true;
     enableZshIntegration = false;  # nicht auto-attach, nur on-demand
     settings = {
-      # theme wird vom catppuccin-Modul gesetzt
+      theme = "catppuccin-mocha";
       default_layout = "compact";
       simplified_ui = false;
       pane_frames = true;

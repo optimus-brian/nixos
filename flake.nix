@@ -13,14 +13,9 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     hyprland.url = "github:hyprwm/Hyprland";
-
-    catppuccin = {
-      url = "github:catppuccin/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, hyprland, catppuccin, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, hyprland, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs-unstable = import nixpkgs-unstable {
@@ -34,15 +29,12 @@
 
         modules = [
           ./hosts/surface
-          # catppuccin.nixosModules.catppuccin braucht services.displayManager.generic
-          # — gibts erst in NixOS 25.12+. System-Theme weglassen, nur home-manager themes.
 
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
-            home-manager.sharedModules = [ catppuccin.homeModules.catppuccin ];
             home-manager.users.brian = import ./home;
           }
         ];

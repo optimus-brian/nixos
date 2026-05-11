@@ -36,9 +36,8 @@
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        # Catppuccin-Modul setzt $mauve, $blue, $surface0 als Hyprland-Variablen
-        "col.active_border" = "$mauve $blue 45deg";
-        "col.inactive_border" = "$surface0";
+        "col.active_border" = "rgba(cba6f7ee) rgba(89b4faee) 45deg";
+        "col.inactive_border" = "rgba(595959aa)";
         layout = "dwindle";
         resize_on_border = true;
       };
@@ -231,7 +230,9 @@
         dots_center = true;
         fade_on_empty = true;
         outline_thickness = 2;
-        # Farben kommen aus catppuccin.hyprlock-Modul
+        outer_color = "rgba(203, 166, 247, 0.8)";
+        inner_color = "rgba(30, 30, 46, 0.8)";
+        font_color = "rgba(205, 214, 244, 1)";
         placeholder_text = "<i>Passwort...</i>";
       }];
       label = [{
