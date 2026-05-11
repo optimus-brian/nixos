@@ -64,11 +64,12 @@
       };
 
       network = {
-        format-wifi = "WiFi {signalStrength}%";
+        format-wifi = "WiFi {essid} {signalStrength}%";
         format-ethernet = "LAN {ipaddr}";
         format-disconnected = "⚠ Offline";
         tooltip-format = "{essid} ({signalStrength}%) — {ipaddr}";
-        on-click = "wezterm start --class=nmtui -- nmtui";
+        on-click = "iwgtk";                                     # GUI WiFi-Picker
+        on-click-right = "nm-connection-editor";                 # Vollständiger Editor
       };
 
       pulseaudio = {

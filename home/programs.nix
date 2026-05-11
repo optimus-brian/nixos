@@ -10,6 +10,7 @@
     xfce.thunar-volman
     gvfs
     chromium
+    iwgtk            # WiFi-GUI mit Klartext-Liste
 
     # === Editors / IDE ===
     vscode
