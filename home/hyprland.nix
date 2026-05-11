@@ -193,7 +193,6 @@
       windowrule = [
         "float on, match:class btop-popup"
         "size 1100 750, match:class btop-popup"
-        "center, match:class btop-popup"
 
         "float on, match:class pavucontrol"
         "float on, match:class blueberry.py"

@@ -12,6 +12,8 @@ let
         --config 'window_decorations="NONE"' \
         --config 'window_padding={left=12,right=12,top=8,bottom=8}' \
         start --class=btop-popup -- ${pkgs.btop}/bin/btop &
+      sleep 0.2
+      ${pkgs.hyprland}/bin/hyprctl dispatch centerwindow
     fi
   '';
 in
