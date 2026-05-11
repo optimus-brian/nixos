@@ -34,7 +34,8 @@
 
         modules = [
           ./hosts/surface
-          catppuccin.nixosModules.catppuccin
+          # catppuccin.nixosModules.catppuccin braucht services.displayManager.generic
+          # — gibts erst in NixOS 25.12+. System-Theme weglassen, nur home-manager themes.
 
           home-manager.nixosModules.home-manager
           {
