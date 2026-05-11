@@ -19,7 +19,7 @@
         editorconfig.editorconfig
 
         # Frontend
-        dsznajder.es7-react-js-snippets
+        # dsznajder.es7-react-js-snippets nicht in nixpkgs — Brian installiert manuell wenn nötig
         ms-vscode.vscode-typescript-next
 
         # Git
