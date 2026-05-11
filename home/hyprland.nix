@@ -36,8 +36,9 @@
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        "col.active_border" = "rgba(cba6f7ee) rgba(89b4faee) 45deg";
-        "col.inactive_border" = "rgba(595959aa)";
+        # rieth.io Brand: blue (#1F5C85) → blue-tint (#7FB8DC) gradient
+        "col.active_border" = "rgba(1F5C85ee) rgba(7FB8DCee) 45deg";
+        "col.inactive_border" = "rgba(4A5A6Eaa)";
         layout = "dwindle";
         resize_on_border = true;
       };
@@ -230,9 +231,10 @@
         dots_center = true;
         fade_on_empty = true;
         outline_thickness = 2;
-        outer_color = "rgba(203, 166, 247, 0.8)";
-        inner_color = "rgba(30, 30, 46, 0.8)";
-        font_color = "rgba(205, 214, 244, 1)";
+        # rieth.io Brand
+        outer_color = "rgba(31, 92, 133, 0.8)";   # r-blue
+        inner_color = "rgba(11, 27, 42, 0.8)";    # r-ink
+        font_color = "rgba(215, 220, 226, 1)";    # r-rule
         placeholder_text = "<i>Passwort...</i>";
       }];
       label = [{

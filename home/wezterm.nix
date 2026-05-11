@@ -10,8 +10,44 @@
       local wezterm = require 'wezterm'
       local config = wezterm.config_builder()
 
-      -- Look & Feel: Catppuccin Mocha
-      config.color_scheme = 'Catppuccin Mocha'
+      -- rieth.io Brand-Farben (custom dark scheme aus styleguide)
+      config.colors = {
+        foreground = '#D7DCE2',  -- r-rule
+        background = '#0B1B2A',  -- r-ink
+        cursor_bg  = '#7FB8DC',  -- r-blue-tint
+        cursor_border = '#7FB8DC',
+        cursor_fg  = '#0B1B2A',
+        selection_bg = '#1F5C85',
+        selection_fg = '#FFFFFF',
+        ansi = {
+          '#1A2F45',  -- 0 black (r-ink-2)
+          '#B4361A',  -- 1 red (r-danger)
+          '#1F7A4D',  -- 2 green (r-ok)
+          '#B57B1A',  -- 3 yellow (r-warn)
+          '#1F5C85',  -- 4 blue (r-blue)
+          '#7FB8DC',  -- 5 magenta → r-blue-tint
+          '#7FB8DC',  -- 6 cyan
+          '#D7DCE2',  -- 7 white (r-rule)
+        },
+        brights = {
+          '#4A5A6E',  -- bright black (r-ink-3)
+          '#B4361A',
+          '#1F7A4D',
+          '#B57B1A',
+          '#7FB8DC',
+          '#7FB8DC',
+          '#D7DCE2',
+          '#FFFFFF',
+        },
+        tab_bar = {
+          background = '#0B1B2A',
+          active_tab = { bg_color = '#1F5C85', fg_color = '#FFFFFF' },
+          inactive_tab = { bg_color = '#1A2F45', fg_color = '#8795A4' },
+          inactive_tab_hover = { bg_color = '#164361', fg_color = '#D7DCE2' },
+          new_tab = { bg_color = '#1A2F45', fg_color = '#7FB8DC' },
+          new_tab_hover = { bg_color = '#1F5C85', fg_color = '#FFFFFF' },
+        },
+      }
       config.font = wezterm.font_with_fallback {
         'JetBrainsMono Nerd Font',
         'Symbols Nerd Font',

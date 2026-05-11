@@ -97,12 +97,23 @@
       tray = { spacing = 8; };
     };
 
-    # "Floating Islands" style — Bar selbst transparent, Module als Pills
+    # rieth.io Brand — Dark-Variante mit Brand-Tokens aus styleguide
     style = ''
-      @define-color accent @mauve;
+      /* Brand colors */
+      @define-color r-ink       #0B1B2A;
+      @define-color r-ink-2     #1A2F45;
+      @define-color r-ink-3     #4A5A6E;
+      @define-color r-ink-4     #8795A4;
+      @define-color r-rule      #D7DCE2;
+      @define-color r-blue      #1F5C85;
+      @define-color r-blue-tint #7FB8DC;
+      @define-color r-blue-deep #164361;
+      @define-color r-ok        #1F7A4D;
+      @define-color r-warn      #B57B1A;
+      @define-color r-danger    #B4361A;
 
       * {
-        font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
+        font-family: "JetBrains Mono", "Inter", sans-serif;
         font-size: 13px;
         min-height: 0;
         border: none;
@@ -110,11 +121,11 @@
       }
 
       window#waybar {
-        background: transparent;       /* Bar selbst durchsichtig */
-        color: @text;
+        background: transparent;
+        color: @r-rule;
       }
 
-      /* Jedes Modul wird zu einem Pill mit eigenem Hintergrund + Rundung */
+      /* Jedes Modul = Pill in Brand-Ink mit Brand-Blue-Rand */
       #workspaces,
       #window,
       #clock,
@@ -126,19 +137,19 @@
       #backlight,
       #cpu,
       #memory {
-        background: alpha(@base, 0.75);
+        background: alpha(@r-ink, 0.85);
+        border: 1px solid alpha(@r-blue, 0.4);
         border-radius: 12px;
         margin: 6px 4px;
         padding: 0 12px;
-        border: 1px solid alpha(@accent, 0.15);
+        color: @r-rule;
       }
 
-      /* Workspaces: Buttons in einem Pill-Container */
       #workspaces { padding: 0 4px; }
 
       #workspaces button {
         padding: 0 8px;
-        color: @overlay0;
+        color: @r-ink-4;
         background: transparent;
         border-radius: 8px;
         border: none;
@@ -147,31 +158,35 @@
       }
 
       #workspaces button.active {
-        color: @base;
-        background: @accent;
+        color: @r-rule;
+        background: @r-blue;
       }
 
       #workspaces button:hover {
-        background: alpha(@accent, 0.2);
-        color: @accent;
+        background: alpha(@r-blue-tint, 0.2);
+        color: @r-blue-tint;
       }
 
-      #clock   { color: @yellow; font-weight: bold; }
-      #window  { color: @subtext0; font-style: italic; }
+      #clock      { color: @r-blue-tint; font-weight: bold; }
+      #window     { color: @r-ink-4; font-style: italic; }
 
-      #pulseaudio { color: @green; }
-      #network    { color: @blue; }
-      #bluetooth  { color: @sapphire; }
-      #battery    { color: @teal; }
-      #backlight  { color: @yellow; }
-      #cpu        { color: @peach; }
-      #memory     { color: @mauve; }
+      #pulseaudio { color: @r-ok; }
+      #network    { color: @r-blue-tint; }
+      #bluetooth  { color: @r-blue; }
+      #battery    { color: @r-ok; }
+      #backlight  { color: @r-warn; }
+      #cpu        { color: @r-blue-tint; }
+      #memory     { color: @r-rule; }
 
-      #battery.warning  { color: @yellow; }
-      #battery.critical { color: @red; animation: blink 1s infinite alternate; }
+      #battery.warning  { color: @r-warn; }
+      #battery.critical {
+        color: @r-rule;
+        background: @r-danger;
+        animation: blink 1s infinite alternate;
+      }
 
       @keyframes blink {
-        to { background: @red; color: @base; }
+        to { background: alpha(@r-danger, 0.5); }
       }
     '';
   };
