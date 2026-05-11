@@ -48,16 +48,20 @@
     libnotify
   ];
 
-  # Polkit-Agent (für sudo-prompts in GUI-Apps) — custom systemd
-  # (programs.hyprpolkitagent gibt's erst in NixOS 25.12+)
+  # Polkit-Agent (für sudo-prompts in GUI-Apps) — GTK-basiert (polkit_gnome)
+  # statt hyprpolkitagent (Qt) der ohne Qt-Wayland-Plugin crashed
   security.polkit.enable = true;
-  systemd.user.services.hyprpolkitagent = {
-    description = "Hyprland Polkit Agent";
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
     after = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
-      Restart = "always";
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
     };
   };
 
