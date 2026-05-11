@@ -189,8 +189,17 @@
         ",XF86AudioPrev, exec, playerctl previous"
       ];
 
-      # windowrule disabled — Hyprland 0.54 mosert mit der Syntax.
-      # Floating wird stattdessen via hyprctl dispatch im Toggle-Script gesetzt.
+      # Hyprland 0.55: neue Syntax mit `match:class ...` und value-Pflicht (float on statt float)
+      windowrule = [
+        "float on, match:class btop-popup"
+        "size 1100 750, match:class btop-popup"
+        "center, match:class btop-popup"
+
+        "float on, match:class pavucontrol"
+        "float on, match:class blueberry.py"
+        "float on, match:class nm-connection-editor"
+        "float on, match:title Picture-in-Picture"
+      ];
     };
   };
 
