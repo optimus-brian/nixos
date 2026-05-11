@@ -86,6 +86,7 @@
           tap-to-click = true;
           drag_3fg = 1;          # Mac-Style: 3 Finger drücken+ziehen = Drag (Markieren/Verschieben)
           tap-and-drag = true;   # Tap+Halten+Ziehen geht auch
+          scroll_factor = 0.5;   # Scroll-Geschwindigkeit halbiert
         };
       };
 
