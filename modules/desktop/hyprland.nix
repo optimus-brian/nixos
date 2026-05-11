@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
-  # Hyprland (system-side enable) — über UWSM gestartet, kein "start-hyprland" Warning
+  # Hyprland — withUWSM macht's selbst (legt hyprland-uwsm.desktop in wayland-sessions an)
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -10,14 +10,7 @@
     withUWSM = true;
   };
 
-  programs.uwsm = {
-    enable = true;
-    waylandCompositors.hyprland = {
-      prettyName = "Hyprland";
-      comment = "Hyprland session managed by UWSM";
-      binPath = "/run/current-system/sw/bin/Hyprland";
-    };
-  };
+  programs.uwsm.enable = true;
 
   # Login-Manager: tuigreet (TUI, schlank). UWSM startet Hyprland-Session → keine Warnung.
   services.greetd = {
