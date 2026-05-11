@@ -82,7 +82,7 @@
     enable = true;
     enableZshIntegration = false;  # nicht auto-attach, nur on-demand
     settings = {
-      theme = "catppuccin-mocha";
+      # zellij theme kommt aus catppuccin-Modul
       default_layout = "compact";
       simplified_ui = false;
       pane_frames = true;

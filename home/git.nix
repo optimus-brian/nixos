@@ -31,7 +31,7 @@
         navigate = true;
         line-numbers = true;
         side-by-side = true;
-        syntax-theme = "Catppuccin-mocha";
+        # syntax-theme kommt aus catppuccin-Modul
       };
     };
   };
