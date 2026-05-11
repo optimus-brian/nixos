@@ -7,6 +7,7 @@
     ./hyprpaper.nix
     ./waybar.nix
     ./wezterm.nix
+    ./vscode.nix
     ./neomutt.nix
     ./zsh.nix
     ./git.nix

@@ -13,8 +13,8 @@
     iwgtk            # WiFi-GUI mit Klartext-Liste
 
     # === Editors / IDE ===
-    vscode
-    # neovim kommt via programs.neovim.enable unten
+    # vscode kommt via programs.vscode unten (mit Extensions)
+    # neovim kommt via programs.neovim unten
 
     # === Development ===
     nodejs_22
@@ -84,9 +84,6 @@
     iperf3
     tcpdump
     socat
-  ]) ++ (with pkgs-unstable; [
-    # Aus unstable (für aktuelle Versionen)
-    code-cursor
   ]);
 
   # Neovim mit Basis-Setup (LazyVim-ready)
