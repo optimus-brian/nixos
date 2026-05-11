@@ -25,7 +25,7 @@
       ];
 
       exec-once = [
-        "waybar"
+        # waybar läuft als systemd user service (programs.waybar.systemd.enable)
         "mako"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
