@@ -57,42 +57,41 @@
 
       battery = {
         states = { warning = 30; critical = 15; };
-        format = "{icon}  {capacity}%";
-        format-charging = "  {capacity}%";
-        format-plugged = "  {capacity}%";
-        format-icons = [ "" "" "" "" "" ];
+        format = "Bat {capacity}%";
+        format-charging = "Bat ⚡{capacity}%";
+        format-plugged = "Bat ⏚{capacity}%";
+        format-full = "Bat ✓{capacity}%";
       };
 
       network = {
-        format-wifi = "  {signalStrength}%";
-        format-ethernet = "  {ipaddr}";
-        format-disconnected = "⚠  Offline";
+        format-wifi = "WiFi {signalStrength}%";
+        format-ethernet = "LAN {ipaddr}";
+        format-disconnected = "⚠ Offline";
         tooltip-format = "{essid} ({signalStrength}%) — {ipaddr}";
         on-click = "wezterm start --class=nmtui -- nmtui";
       };
 
       pulseaudio = {
-        format = "{icon}  {volume}%";
-        format-muted = "󰝟  Stumm";
-        format-icons.default = [ "" "" "" ];
+        format = "Vol {volume}%";
+        format-muted = "Vol Stumm";
         on-click = "pavucontrol";
       };
 
       bluetooth = {
-        format = "  {status}";
+        format = "BT {status}";
         format-disabled = "";
-        format-connected = "  {device_alias}";
+        format-connected = "BT {device_alias}";
         on-click = "blueberry";
       };
 
       backlight = {
-        format = "  {percent}%";
+        format = "☀ {percent}%";
         on-scroll-up = "brightnessctl set +5%";
         on-scroll-down = "brightnessctl set 5%-";
       };
 
-      cpu = { format = "  {usage}%"; };
-      memory = { format = "  {percentage}%"; };
+      cpu = { format = "CPU {usage}%"; };
+      memory = { format = "RAM {percentage}%"; };
 
       tray = { spacing = 8; };
     };
