@@ -221,7 +221,7 @@
     };
   };
 
-  # Hyprlock (lockscreen)
+  # Hyprlock — TUI-Style (Mono-Font, dunkler Background, keine Pille)
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -229,76 +229,92 @@
         hide_cursor = true;
         grace = 2;
       };
+      # Solid dunkler Background — kein Screenshot-Blur, kein Wallpaper
       background = [{
-        path = "screenshot";
-        blur_passes = 3;
-        blur_size = 8;
+        monitor = "eDP-1";
+        color = "rgba(11, 27, 42, 1)";   # r-ink, voll opak
+        blur_passes = 0;
       }];
+      # Eingabe-Feld: minimal, ohne Pille — nur ein dünner unterer Strich
       input-field = [{
-        size = "300, 50";
-        position = "0, 0";
+        monitor = "eDP-1";
+        size = "400, 40";
+        position = "0, -180";
         halign = "center";
         valign = "center";
-        monitor = "eDP-1";          # explizit, sonst doppelt bei fractional scale
+        outline_thickness = 0;
         dots_center = true;
-        fade_on_empty = true;
-        outline_thickness = 2;
-        # rieth.io Brand
-        outer_color = "rgba(31, 92, 133, 0.8)";   # r-blue
-        inner_color = "rgba(11, 27, 42, 0.8)";    # r-ink
-        font_color = "rgba(215, 220, 226, 1)";    # r-rule
-        placeholder_text = "<i>Passwort...</i>";
+        dots_size = 0.15;
+        dots_spacing = 0.5;
+        fade_on_empty = false;
+        rounding = 0;
+        outer_color = "rgba(0, 0, 0, 0)";        # unsichtbar
+        inner_color = "rgba(26, 47, 69, 0.5)";   # r-ink-2 transparent
+        font_color = "rgba(215, 220, 226, 1)";   # r-rule
+        font_family = "JetBrains Mono";
+        placeholder_text = "Passwort:";
       }];
       label = [
-        # Große Uhr — mittig oben
+        # ASCII-Box oben — "SURFACE LOCKED"
+        {
+          monitor = "eDP-1";
+          text = "[ rieth.io · surface ]";
+          font_size = 24;
+          font_family = "JetBrains Mono Bold";
+          color = "rgba(31, 92, 133, 1)";   # r-blue
+          position = "0, 280";
+          halign = "center";
+          valign = "center";
+        }
+        # Uhr — Mono, groß
         {
           monitor = "eDP-1";
           text = "$TIME";
-          font_size = 96;
-          font_family = "Inter Bold";
+          font_size = 72;
+          font_family = "JetBrains Mono";
           color = "rgba(215, 220, 226, 1)";
-          position = "0, 220";
+          position = "0, 160";
           halign = "center";
           valign = "center";
         }
-        # Datum unter der Uhr
+        # Datum
         {
           monitor = "eDP-1";
           text = ''cmd[update:60000] date +"%A, %d. %B %Y"'';
-          font_size = 22;
-          font_family = "Inter";
+          font_size = 18;
+          font_family = "JetBrains Mono";
           color = "rgba(127, 184, 220, 1)";   # r-blue-tint
-          position = "0, 130";
+          position = "0, 80";
           halign = "center";
           valign = "center";
         }
-        # User-Greeting
+        # User
         {
           monitor = "eDP-1";
-          text = "Hi $USER";
-          font_size = 18;
-          font_family = "Inter";
+          text = "user: $USER";
+          font_size = 14;
+          font_family = "JetBrains Mono";
           color = "rgba(135, 149, 164, 1)";   # r-ink-4
-          position = "0, 70";
+          position = "0, -100";
           halign = "center";
           valign = "center";
         }
         # Battery + Network unten links
         {
           monitor = "eDP-1";
-          text = ''cmd[update:5000] echo "  $(cat /sys/class/power_supply/BAT*/capacity)%  ·  $(cat /sys/class/power_supply/BAT*/status)"'';
-          font_size = 14;
+          text = ''cmd[update:5000] echo "battery: $(cat /sys/class/power_supply/BAT*/capacity)%  $(cat /sys/class/power_supply/BAT*/status)"'';
+          font_size = 12;
           font_family = "JetBrains Mono";
           color = "rgba(135, 149, 164, 1)";
           position = "30, 30";
           halign = "left";
           valign = "bottom";
         }
-        # Hostname rechts unten
+        # Hostname unten rechts
         {
           monitor = "eDP-1";
-          text = ''cmd[update:60000] echo "$(hostname) · $(ip route get 1.1.1.1 | awk '{print $7; exit}')"'';
-          font_size = 14;
+          text = ''cmd[update:60000] echo "$(hostname) · $(ip route get 1.1.1.1 2>/dev/null | awk '{print $7; exit}')"'';
+          font_size = 12;
           font_family = "JetBrains Mono";
           color = "rgba(135, 149, 164, 1)";
           position = "-30, 30";
