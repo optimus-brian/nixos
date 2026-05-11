@@ -8,7 +8,8 @@
     systemd.variables = [ "--all" ];
 
     settings = {
-      monitor = [ ", preferred, auto, 1.5" ];
+      # Surface Laptop 5: 2256x1504 — Scale 1.25 für gute Lesbarkeit
+      monitor = [ ", preferred, auto, 1.25" ];
 
       "$mod" = "SUPER";
       "$terminal" = "wezterm";
@@ -26,7 +27,6 @@
       exec-once = [
         "waybar"
         "mako"
-        "swww-daemon"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
         "nm-applet --indicator"
@@ -87,19 +87,17 @@
         };
       };
 
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_fingers = 3;
-      };
+      # Gestures (Hyprland 0.50+ neue Syntax) — erstmal weg, später zurück
+      # gesture = [ "3, horizontal, workspace" ];
 
       misc = {
         disable_hyprland_logo = true;
         force_default_wallpaper = 0;
-        vfr = true;
+        # vfr = true;   # entfernt in 0.50+
       };
 
       dwindle = {
-        pseudotile = true;
+        # pseudotile entfernt — nicht mehr Top-Level option
         preserve_split = true;
       };
 
@@ -109,7 +107,6 @@
         "$mod, B, exec, $browser"
         "$mod, E, exec, $fileManager"
         "$mod, R, exec, $menu"
-        "$mod, M, exec, wezterm start --class=neomutt -- neomutt"
         "$mod, O, exec, obsidian"
         "$mod SHIFT, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
 
@@ -118,8 +115,7 @@
         "$mod SHIFT, Q, exit,"
         "$mod, F, fullscreen,"
         "$mod, V, togglefloating,"
-        "$mod, P, pseudo,"
-        "$mod, J, togglesplit,"
+        # togglesplit/pseudo entfernt — deprecated dispatchers in 0.50+
 
         # Focus
         "$mod, left, movefocus, l"
@@ -192,8 +188,6 @@
         "float, class:^(blueberry.py)$"
         "float, class:^(nm-connection-editor)$"
         "float, title:^(Picture-in-Picture)$"
-        "workspace 5, class:^(obsidian)$"
-        "workspace 9, class:^(neomutt)$"
       ];
     };
   };
