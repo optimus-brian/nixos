@@ -107,6 +107,7 @@
         "$mod, B, exec, $browser"
         "$mod, E, exec, $fileManager"
         "$mod, R, exec, $menu"
+        "$mod, SPACE, exec, $menu"
         "$mod, O, exec, obsidian"
         "$mod SHIFT, V, exec, cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
 

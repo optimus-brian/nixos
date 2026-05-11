@@ -10,6 +10,7 @@
     xfce.thunar-volman
     gvfs
     chromium
+    google-chrome
 
     # === Editors / IDE ===
     vscode
