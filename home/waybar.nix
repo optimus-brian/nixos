@@ -1,12 +1,17 @@
 { config, pkgs, lib, ... }:
 
 let
-  # Toggle-Script: btop in WezTerm öffnen oder schließen
+  # Toggle-Script: btop in WezTerm — floating, mittig, definierte Größe
   toggleBtop = pkgs.writeShellScriptBin "toggle-btop" ''
     if ${pkgs.procps}/bin/pgrep -f 'wezterm.*btop' > /dev/null; then
       ${pkgs.procps}/bin/pkill -f 'wezterm.*btop'
     else
       ${pkgs.wezterm}/bin/wezterm start --class=btop-popup -- ${pkgs.btop}/bin/btop &
+      # warten bis Fenster da ist, dann float + size + center
+      sleep 0.4
+      ${pkgs.hyprland}/bin/hyprctl dispatch togglefloating class:btop-popup
+      ${pkgs.hyprland}/bin/hyprctl dispatch resizewindowpixel "exact 1100 750,class:btop-popup"
+      ${pkgs.hyprland}/bin/hyprctl dispatch centerwindow
     fi
   '';
 in

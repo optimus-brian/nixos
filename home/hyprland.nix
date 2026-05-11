@@ -189,18 +189,8 @@
         ",XF86AudioPrev, exec, playerctl previous"
       ];
 
-      windowrule = [
-        # btop-popup: floating, mittig, schöne Größe
-        "float, class:^(btop-popup)$"
-        "size 1100 750, class:^(btop-popup)$"
-        "center, class:^(btop-popup)$"
-
-        # andere typische "Popups" floating
-        "float, class:^(pavucontrol)$"
-        "float, class:^(blueberry.py)$"
-        "float, class:^(nm-connection-editor)$"
-        "float, title:^(Picture-in-Picture)$"
-      ];
+      # windowrule disabled — Hyprland 0.54 mosert mit der Syntax.
+      # Floating wird stattdessen via hyprctl dispatch im Toggle-Script gesetzt.
     };
   };
 
