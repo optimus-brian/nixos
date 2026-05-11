@@ -17,5 +17,7 @@
   programs.fuzzel.catppuccin.enable = true;
   # programs.wezterm.catppuccin — gibt's in release-25.11 nicht, color_scheme bleibt hardcoded
   services.mako.catppuccin.enable = true;
-  programs.hyprlock.catppuccin.enable = true;
+  # programs.hyprlock.catppuccin.enable = true;
+  # → kollidiert mit unserer hyprlock-Config (definiert zusätzliches input-field + label)
+  # → wir nutzen Brand-Farben in unserer Config direkt
 }
