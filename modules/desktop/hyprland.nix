@@ -17,7 +17,9 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd 'uwsm start hyprland-uwsm.desktop'";
+        # nixpkgs-Bug #476375: hyprland-uwsm.desktop setzt XDG_CURRENT_DESKTOP=start-hyprland
+        # → "-eD Hyprland" forciert den korrekten Wert. hyprland.desktop statt -uwsm.desktop.
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd 'uwsm start -- -eD Hyprland hyprland.desktop'";
         user = "greeter";
       };
     };
