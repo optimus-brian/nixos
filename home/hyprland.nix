@@ -190,6 +190,9 @@
         ",XF86AudioPlay, exec, playerctl play-pause"
         ",XF86AudioNext, exec, playerctl next"
         ",XF86AudioPrev, exec, playerctl previous"
+        # Power-Button: in Hyprland brauchen wir den Bind, weil Hyprland-
+        # Inhibitoren logind sonst blockieren.
+        ",XF86PowerOff, exec, systemctl poweroff"
       ];
 
       # Hyprland 0.55: neue Syntax mit `match:class ...` und value-Pflicht (float on statt float)

@@ -32,6 +32,16 @@
   security.polkit.enable = true;
   security.rtkit.enable = true;
 
+  # Power-Button: kurz = poweroff, lang = ignore (kein Hard-Reset).
+  # Lid-Close = suspend. Wirkt im TTY/Greeter. In Hyprland zusätzlich bindl,
+  # weil Hyprland-Inhibitoren logind sonst überstimmen.
+  services.logind.settings.Login = {
+    HandlePowerKey = "poweroff";
+    HandlePowerKeyLongPress = "ignore";
+    HandleLidSwitch = "suspend";
+    HandleLidSwitchExternalPower = "suspend";
+  };
+
   # GNOME Keyring (für Login-Pässe, Browser-Cookies)
   # → PAM-Hookup: Login-Passwort entsperrt Keyring automatisch
   services.gnome.gnome-keyring.enable = true;
