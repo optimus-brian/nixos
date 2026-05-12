@@ -17,12 +17,12 @@
     enable = true;
     settings = {
       default_session = {
-        # nixpkgs-Bug #476375: ohne -D/-e setzt uwsm XDG_CURRENT_DESKTOP=start-hyprland
-        # → Warning bei jedem Login. Korrekter Syntax (uwsm 0.24+):
-        #   -D Hyprland  → XDG_CURRENT_DESKTOP=Hyprland
-        #   -e           → exclusive, andere Quellen verwerfen
-        # Dry-Run-getestet auf Surface 2026-05-12.
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd 'uwsm start -D Hyprland -e hyprland-uwsm.desktop'";
+        # Hyprland 0.55+ warnt wenn nicht über `start-hyprland`-Wrapper gestartet
+        # ("Hyprland is being launched without start-hyprland. This is highly advised against.")
+        # NixOS' hyprland-uwsm.desktop ruft aber das Hyprland-Binary direkt auf.
+        # Lösung: uwsm direkt auf start-hyprland zeigen (path-Form → hardcode-Mode).
+        # -D Hyprland setzt XDG_CURRENT_DESKTOP. Refs: hyprwm/Hyprland#12661.
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd 'uwsm start -D Hyprland /run/current-system/sw/bin/start-hyprland'";
         user = "greeter";
       };
     };
