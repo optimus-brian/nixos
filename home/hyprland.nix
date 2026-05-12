@@ -121,7 +121,8 @@
 
         # Window-Management
         "$mod, Q, killactive,"
-        "$mod SHIFT, Q, exit,"
+        # SHIFT+Q: Power-Menu (wlogout) statt hartes exit
+        "$mod SHIFT, Q, exec, wlogout -p layer-shell"
         "$mod, F, fullscreen,"
         "$mod, V, togglefloating,"
         # togglesplit/pseudo entfernt — deprecated dispatchers in 0.50+
@@ -190,9 +191,10 @@
         ",XF86AudioPlay, exec, playerctl play-pause"
         ",XF86AudioNext, exec, playerctl next"
         ",XF86AudioPrev, exec, playerctl previous"
-        # Power-Button: in Hyprland brauchen wir den Bind, weil Hyprland-
-        # Inhibitoren logind sonst blockieren.
-        ",XF86PowerOff, exec, systemctl poweroff"
+        # Power-Button: Power-Menu (wlogout) statt direkt poweroff.
+        # In Hyprland brauchen wir den Bind, weil Hyprland-Inhibitoren
+        # logind sonst blockieren.
+        ",XF86PowerOff, exec, wlogout -p layer-shell"
       ];
 
       # Hyprland 0.55: neue Syntax mit `match:class ...` und value-Pflicht (float on statt float)

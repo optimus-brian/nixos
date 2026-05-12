@@ -32,12 +32,11 @@
   security.polkit.enable = true;
   security.rtkit.enable = true;
 
-  # Power-Button: kurz = poweroff, lang = ignore (kein Hard-Reset).
-  # Lid-Close = suspend. Wirkt im TTY/Greeter. In Hyprland zusätzlich bindl,
-  # weil Hyprland-Inhibitoren logind sonst überstimmen.
+  # Power-Button: logind ignoriert, damit Hyprland-Bind (XF86PowerOff → wlogout)
+  # das Event bekommt. Lid-Close bleibt bei logind (suspend).
   services.logind.settings.Login = {
-    HandlePowerKey = "poweroff";
-    HandlePowerKeyLongPress = "ignore";
+    HandlePowerKey = "ignore";
+    HandlePowerKeyLongPress = "poweroff";   # Halten = Notabschaltung
     HandleLidSwitch = "suspend";
     HandleLidSwitchExternalPower = "suspend";
   };

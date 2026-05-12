@@ -22,7 +22,7 @@
         # NixOS' hyprland-uwsm.desktop ruft aber das Hyprland-Binary direkt auf.
         # Lösung: uwsm direkt auf start-hyprland zeigen (path-Form → hardcode-Mode).
         # -D Hyprland setzt XDG_CURRENT_DESKTOP. Refs: hyprwm/Hyprland#12661.
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd 'uwsm start -D Hyprland /run/current-system/sw/bin/start-hyprland'";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd 'uwsm start -e -D Hyprland /run/current-system/sw/bin/start-hyprland'";
         user = "greeter";
       };
     };
@@ -31,6 +31,7 @@
   # Hyprland-Ökosystem
   environment.systemPackages = with pkgs; [
     waybar
+    wlogout
     rofi
     fuzzel
     mako
