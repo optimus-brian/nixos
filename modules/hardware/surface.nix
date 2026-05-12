@@ -13,11 +13,15 @@
   # Shutdown-Hang Fix (Intel 12th Gen Surface: SL5, SP9, SL6, SP11)
   # Symptom: poweroff erreicht Power-Off-Target, aber Hardware schaltet nicht ab,
   # CPU/Lüfter laufen weiter. Ursache: EFI_RESET_SHUTDOWN hängt weil PCI-Shutdown-
-  # Callbacks (TB4/iGPU) vor dem Firmware-Call laufen. DMI-PCI-Quirk fehlt für SL5.
-  # Refs: linux-surface#1864, SL6-Wiki Kernel-Params.
+  # Callbacks (TB4/iGPU) vor dem Firmware-Call laufen.
+  # Fix: reboot=acpi zwingt ACPI-Reset-Pfad statt EFI-Reset.
+  # Refs: linux-surface#1864, r/SurfaceLinux NixOS-Reports 2026.
   boot.kernelParams = [
-    ''acpi_osi="Windows 2022"''   # behebt S5-Shutdown auf Intel 12th Gen
     "pci=hpiosize=0"              # verhindert ACPI-GPE-Spam beim Shutdown
+    "acpi=force"                  # ACPI auch wenn Tabellen unsauber
+    "reboot=acpi"                 # ACPI-Reset statt EFI-Reset (entscheidend!)
+    "acpi_sleep=nonvs"            # Bonus: Suspend-S0ix→S5-Hang vermeiden
+    ''acpi_osi="Windows 2020"''   # SL5/SP9 quirks zielen auf 2020-Profil
   ];
 
   # Firmware (WiFi, Bluetooth, Graphics)
