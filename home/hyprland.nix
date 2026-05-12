@@ -2,9 +2,20 @@
 
 let
   # TUI-Style Power-Menu — fuzzel-dmenu, JetBrains Mono, rieth.io Farben.
-  # Passend zum Lockscreen-Look.
+  # Passend zum Lockscreen-Look. Toggle: zweiter Trigger schließt das Menu.
   powerMenu = pkgs.writeShellScript "power-menu" ''
-    choice=$(printf "lock\nsuspend\nlogout\nreboot\nshutdown" | ${pkgs.fuzzel}/bin/fuzzel \
+    LOCK="$XDG_RUNTIME_DIR/power-menu.pid"
+    # Toggle: läuft das Menu bereits → killen und raus
+    if [ -f "$LOCK" ] && kill -0 "$(cat "$LOCK")" 2>/dev/null; then
+      kill "$(cat "$LOCK")" 2>/dev/null
+      rm -f "$LOCK"
+      exit 0
+    fi
+
+    TMPF=$(mktemp)
+    trap "rm -f '$LOCK' '$TMPF'" EXIT
+
+    printf "lock\nsuspend\nlogout\nreboot\nshutdown" | ${pkgs.fuzzel}/bin/fuzzel \
       --dmenu \
       --lines=5 \
       --width=22 \
@@ -19,8 +30,12 @@ let
       --border-color="1F5C85ff" \
       --border-width=2 \
       --border-radius=4 \
-      --prompt-color="7FB8DCff")
-    case "$choice" in
+      --prompt-color="7FB8DCff" > "$TMPF" &
+    FPID=$!
+    echo $FPID > "$LOCK"
+    wait $FPID || exit 0
+
+    case "$(cat "$TMPF")" in
       lock)     ${pkgs.hyprlock}/bin/hyprlock ;;
       suspend)  systemctl suspend ;;
       logout)   ${pkgs.hyprland}/bin/hyprctl dispatch exit ;;
