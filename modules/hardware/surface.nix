@@ -10,6 +10,16 @@
 
   # Kernel kommt aus microsoft-surface-common (linux-surface Patches)
 
+  # Shutdown-Hang Fix (Intel 12th Gen Surface: SL5, SP9, SL6, SP11)
+  # Symptom: poweroff erreicht Power-Off-Target, aber Hardware schaltet nicht ab,
+  # CPU/Lüfter laufen weiter. Ursache: EFI_RESET_SHUTDOWN hängt weil PCI-Shutdown-
+  # Callbacks (TB4/iGPU) vor dem Firmware-Call laufen. DMI-PCI-Quirk fehlt für SL5.
+  # Refs: linux-surface#1864, SL6-Wiki Kernel-Params.
+  boot.kernelParams = [
+    ''acpi_osi="Windows 2022"''   # behebt S5-Shutdown auf Intel 12th Gen
+    "pci=hpiosize=0"              # verhindert ACPI-GPE-Spam beim Shutdown
+  ];
+
   # Firmware (WiFi, Bluetooth, Graphics)
   hardware.enableAllFirmware = true;
   hardware.enableRedistributableFirmware = true;
