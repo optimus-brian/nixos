@@ -1,5 +1,34 @@
 { config, pkgs, inputs, ... }:
 
+let
+  # TUI-Style Power-Menu — fuzzel-dmenu, JetBrains Mono, rieth.io Farben.
+  # Passend zum Lockscreen-Look.
+  powerMenu = pkgs.writeShellScript "power-menu" ''
+    choice=$(printf "lock\nsuspend\nlogout\nreboot\nshutdown" | ${pkgs.fuzzel}/bin/fuzzel \
+      --dmenu \
+      --lines=5 \
+      --width=22 \
+      --prompt="power: " \
+      --font="JetBrains Mono:size=14" \
+      --background="0B1B2Aee" \
+      --text-color="D7DCE2ff" \
+      --match-color="7FB8DCff" \
+      --selection-color="1F5C85ff" \
+      --selection-text-color="F3F1ECff" \
+      --selection-match-color="7FB8DCff" \
+      --border-color="1F5C85ff" \
+      --border-width=2 \
+      --border-radius=4 \
+      --prompt-color="7FB8DCff")
+    case "$choice" in
+      lock)     ${pkgs.hyprlock}/bin/hyprlock ;;
+      suspend)  systemctl suspend ;;
+      logout)   ${pkgs.hyprland}/bin/hyprctl dispatch exit ;;
+      reboot)   systemctl reboot ;;
+      shutdown) systemctl poweroff ;;
+    esac
+  '';
+in
 {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -121,8 +150,8 @@
 
         # Window-Management
         "$mod, Q, killactive,"
-        # SHIFT+Q: Power-Menu (wlogout) statt hartes exit
-        "$mod SHIFT, Q, exec, wlogout -p layer-shell"
+        # SHIFT+Q: TUI-Power-Menu (fuzzel) statt hartes exit
+        "$mod SHIFT, Q, exec, ${powerMenu}"
         "$mod, F, fullscreen,"
         "$mod, V, togglefloating,"
         # togglesplit/pseudo entfernt — deprecated dispatchers in 0.50+
@@ -191,10 +220,10 @@
         ",XF86AudioPlay, exec, playerctl play-pause"
         ",XF86AudioNext, exec, playerctl next"
         ",XF86AudioPrev, exec, playerctl previous"
-        # Power-Button: Power-Menu (wlogout) statt direkt poweroff.
+        # Power-Button: TUI-Power-Menu (fuzzel) statt direkt poweroff.
         # In Hyprland brauchen wir den Bind, weil Hyprland-Inhibitoren
         # logind sonst blockieren.
-        ",XF86PowerOff, exec, wlogout -p layer-shell"
+        ",XF86PowerOff, exec, ${powerMenu}"
       ];
 
       # Hyprland 0.55: neue Syntax mit `match:class ...` und value-Pflicht (float on statt float)

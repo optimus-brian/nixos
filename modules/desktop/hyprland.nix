@@ -31,7 +31,6 @@
   # Hyprland-Ökosystem
   environment.systemPackages = with pkgs; [
     waybar
-    wlogout
     rofi
     fuzzel
     mako

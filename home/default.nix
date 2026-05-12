@@ -6,7 +6,6 @@
     ./hyprland.nix
     ./hyprpaper.nix
     ./waybar.nix
-    ./wlogout.nix
     ./wezterm.nix
     ./vscode.nix
     ./neomutt.nix
