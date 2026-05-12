@@ -17,10 +17,12 @@
     enable = true;
     settings = {
       default_session = {
-        # nixpkgs-Bug #476375: hyprland-uwsm.desktop setzt XDG_CURRENT_DESKTOP=start-hyprland.
-        # Workaround mit -eD scheitert (uwsm-Syntax stimmt nicht). Zurück auf den
-        # default — die Warning ist harmlos, nur kosmetisch.
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd 'uwsm start hyprland-uwsm.desktop'";
+        # nixpkgs-Bug #476375: ohne -D/-e setzt uwsm XDG_CURRENT_DESKTOP=start-hyprland
+        # → Warning bei jedem Login. Korrekter Syntax (uwsm 0.24+):
+        #   -D Hyprland  → XDG_CURRENT_DESKTOP=Hyprland
+        #   -e           → exclusive, andere Quellen verwerfen
+        # Dry-Run-getestet auf Surface 2026-05-12.
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --asterisks --cmd 'uwsm start -D Hyprland -e hyprland-uwsm.desktop'";
         user = "greeter";
       };
     };
